@@ -1,17 +1,17 @@
 import { expect, use } from 'chai'
 import { sha256, toByteString } from 'scrypt-ts'
-import { Smartdemo } from '../src/contracts/smartdemo'
+import { Demo } from '../src/contracts/demo'
 import { getDefaultSigner } from './utils/txHelper'
 import chaiAsPromised from 'chai-as-promised'
 use(chaiAsPromised)
 
 describe('Test SmartContract `Smartdemo`', () => {
-    let instance: Smartdemo
+    let instance: Demo
 
     before(async () => {
-        await Smartdemo.loadArtifact()
+        await Demo.loadArtifact()
 
-        instance = new Smartdemo(sha256(toByteString('hello world', true)))
+        instance = new Demo(sha256(toByteString('hello world', true)))
         await instance.connect(getDefaultSigner())
     })
 
@@ -23,7 +23,7 @@ describe('Test SmartContract `Smartdemo`', () => {
             const callRes = await instance.methods.unlock(
                 toByteString('hello world', true)
             )
-            
+
             console.log(`Called "unlock" method: ${callRes.tx.id}`)
         }
         await expect(call()).not.to.be.rejected
@@ -32,7 +32,8 @@ describe('Test SmartContract `Smartdemo`', () => {
     it('should throw with wrong message.', async () => {
         await instance.deploy(1)
 
-        const call = async () => instance.methods.unlock(toByteString('wrong message', true))
+        const call = async () =>
+            instance.methods.unlock(toByteString('wrong message', true))
         await expect(call()).to.be.rejectedWith(/Hash does not match/)
     })
 })

@@ -4,17 +4,17 @@
   "description": "A demo sCrypt smart contract.",
   "author": "",
   "scripts": {
-    "prebuild": "bun run clean",
+    "prebuild": "npm run clean",
     "build": "tsc",
-    "deploy": "bunx ts-node ./deploy.ts",
+    "deploy": "npx ts-node ./deploy.ts",
     "clean": "rimraf scrypt.index.json && rimraf dist && rimraf artifacts",
-    "compile": "bunx scrypt-cli compile",
-    "pretest": "bun run build && npm run compile",
-    "test": "bun run test:mocha",
+    "compile": "npx scrypt-cli compile",
+    "pretest": "npm run build && npm run compile",
+    "test": "npm run test:mocha",
     "test:mocha": "cross-env NETWORK=local mocha",
-    "pretest:testnet": "bun run build && npm run compile",
+    "pretest:testnet": "npm run build && npm run compile",
     "test:testnet": "cross-env NETWORK=testnet mocha --no-timeouts",
-    "genprivkey": "bunx ts-node tests/utils/privateKey.ts",
+    "genprivkey": "npx ts-node tests/utils/privateKey.ts",
     "lint": "eslint . --ext .js,.ts --fix && prettier --write --ignore-unknown \"**/*\"",
     "lint-check": "eslint . --ext .js,.ts && prettier --check --ignore-unknown \"**/*\"",
     "prepare": "husky install"
@@ -49,9 +49,9 @@
     "mocha": "^10.1.0",
     "prettier": "^2.8.2",
     "rimraf": "^3.0.2",
+    "scrypt-cli": "^0.1.73",
     "ts-node": "^10.9.1",
-    "typescript": "^5.3.3",
-    "scrypt-cli": "^0.1.68"
+    "typescript": "^5.3.3"
   },
   "license": "MIT"
 }

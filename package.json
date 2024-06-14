@@ -4,17 +4,17 @@
   "description": "A demo sCrypt smart contract.",
   "author": "",
   "scripts": {
-    "prebuild": "npm run clean",
+    "prebuild": "bun run clean",
     "build": "tsc",
-    "deploy": "npx ts-node ./deploy.ts",
+    "deploy": "bunx ts-node ./deploy.ts",
     "clean": "rimraf scrypt.index.json && rimraf dist && rimraf artifacts",
-    "compile": "npx scrypt-cli compile",
-    "pretest": "npm run build && npm run compile",
-    "test": "npm run test:mocha",
+    "compile": "bunx scrypt-cli compile",
+    "pretest": "bun run build && npm run compile",
+    "test": "bun run test:mocha",
     "test:mocha": "cross-env NETWORK=local mocha",
-    "pretest:testnet": "npm run build && npm run compile",
+    "pretest:testnet": "bun run build && npm run compile",
     "test:testnet": "cross-env NETWORK=testnet mocha --no-timeouts",
-    "genprivkey": "npx ts-node tests/utils/privateKey.ts",
+    "genprivkey": "bunx ts-node tests/utils/privateKey.ts",
     "lint": "eslint . --ext .js,.ts --fix && prettier --write --ignore-unknown \"**/*\"",
     "lint-check": "eslint . --ext .js,.ts && prettier --check --ignore-unknown \"**/*\"",
     "prepare": "husky install"
@@ -29,6 +29,7 @@
   },
   "dependencies": {
     "dotenv": "^16.0.3",
+    "neucron-signer": "^1.3.2",
     "scrypt-ts": "latest"
   },
   "devDependencies": {

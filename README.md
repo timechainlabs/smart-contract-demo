@@ -1,19 +1,13 @@
 # Smartdemo
 
-## Build
+## Compile
 
 ```sh
-npm run build
+npm run compile
 ```
 
-## Testing Locally
+## Deploy
 
 ```sh
-npm run test
-```
-
-## Run Tests on the Bitcoin Testnet
-
-```sh
-npm run test:testnet
+npm run deploy
 ```
